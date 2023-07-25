@@ -12,11 +12,14 @@ set -e
 # Set the following to include long running streaming tests
 # INCLUDE_LONG_RUNNING=true
 
+echo "create logs directory"
+mkdir -p logs
+
 echo "Coherence CE 22.06.5"
 COHERENCE_CLIENT_REQUEST_TIMEOUT=180.0 \
   make clean test-cluster-shutdown remove-app-images build-test-images test-cluster-startup just-wait test
   make dump-logs test-cluster-shutdown
-  mv ./tests/utils/run-logs.txt ./tests/utils/run-logs-clear.txt
+  mv ./tests/utils/run-logs.txt ./logs/run-logs-clear.txt
 
 echo "Coherence CE 22.06.5 with SSL"
 RUN_SECURE=true COHERENCE_IGNORE_INVALID_CERTS=true \
@@ -27,4 +30,4 @@ RUN_SECURE=true COHERENCE_IGNORE_INVALID_CERTS=true \
   PROFILES=,secure make clean certs test-cluster-shutdown remove-app-images \
                                                   build-test-images test-cluster-startup just-wait test
   make dump-logs test-cluster-shutdown
-  mv ./tests/utils/run-logs.txt ./tests/utils/run-logs-ssl.txt
+  mv ./tests/utils/run-logs.txt ./logs/run-logs-ssl.txt

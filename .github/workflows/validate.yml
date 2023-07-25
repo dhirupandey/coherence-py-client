@@ -68,4 +68,4 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           name: "run-logs"
-          path: ./tests/utils/*.txt
+          path: ./logs
