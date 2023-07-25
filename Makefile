@@ -180,7 +180,7 @@ test-cluster-shutdown: ## Shutdown any test cluster members using docker-compose
 # Dump logs via docker compose
 # ----------------------------------------------------------------------------------------------------------------------
 .PHONY: dump-logs
-test-cluster-shutdown: ## Shutdown any test cluster members using docker-compose
+dump-logs: ## Dump logs via docker compose
 	cd tests/utils && docker-compose -f docker-compose-2-members.yaml logs --no-color > run-logs.txt
 
 
