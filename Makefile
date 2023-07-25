@@ -40,6 +40,9 @@ CLUSTER_PORT ?= 7574
 PROFILES ?=
 COHERENCE_BASE_IMAGE ?= gcr.io/distroless/java17-debian11
 
+# JSON debug
+COHERENCE_IO_JSON_DEBUG ?= true
+
 # ----------------------------------------------------------------------------------------------------------------------
 # Set the location of various build tools
 # ----------------------------------------------------------------------------------------------------------------------
@@ -58,7 +61,9 @@ GO_TEST_FLAGS ?= -timeout 20m
 # Options to append to the Maven command
 # ----------------------------------------------------------------------------------------------------------------------
 MAVEN_OPTIONS ?= -Dmaven.wagon.httpconnectionManager.ttlSeconds=25 -Dmaven.wagon.http.retryHandler.count=3
-MAVEN_BUILD_OPTS :=$(USE_MAVEN_SETTINGS) -Drevision=$(MVN_VERSION) -Dcoherence.version=$(COHERENCE_VERSION) -Dcoherence.group.id=$(COHERENCE_GROUP_ID) $(MAVEN_OPTIONS)
+MAVEN_BUILD_OPTS :=$(USE_MAVEN_SETTINGS) -Drevision=$(MVN_VERSION) -Dcoherence.version=$(COHERENCE_VERSION) \
+					-Dcoherence.group.id=$(COHERENCE_GROUP_ID) \
+					$(MAVEN_OPTIONS)
 
 CURRDIR := $(shell pwd)
 
