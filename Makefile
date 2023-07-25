@@ -176,6 +176,13 @@ test-cluster-startup: $(BUILD_PROPS) ## Startup any test cluster members using d
 test-cluster-shutdown: ## Shutdown any test cluster members using docker-compose
 	cd tests/utils && docker-compose -f docker-compose-2-members.yaml down || true
 
+# ----------------------------------------------------------------------------------------------------------------------
+# Dump logs via docker compose
+# ----------------------------------------------------------------------------------------------------------------------
+.PHONY: dump-logs
+test-cluster-shutdown: ## Shutdown any test cluster members using docker-compose
+	cd tests/utils && docker-compose -f docker-compose-2-members.yaml logs --no-color > run-logs.txt
+
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Startup standalone coherence via java -jar
