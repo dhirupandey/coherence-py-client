@@ -63,3 +63,9 @@ jobs:
         shell: bash
         run: |
           python -m poetry run ./tests/scripts/run-tests.sh
+          
+      - name: Upload logs
+        uses: actions/upload-pages-artifact@v2
+        with:
+          name: "run-logs"
+          path: ./tests/utils/*.txt
