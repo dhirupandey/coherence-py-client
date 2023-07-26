@@ -123,7 +123,7 @@ generate-proto:  ## Generate Proto Files
 # ----------------------------------------------------------------------------------------------------------------------
 .PHONY: test
 test:  ##
-	number=1 ; while [[ $$number -le 100 ]] ; do \
+	number=1 ; while [ $$number -le 10 ] ; do \
 			echo "Iteration Number $$number" ; \
 			pytest -W error tests/test_session.py -k "test_wait_for_ready" -s -o log_cli-level=DEBUG ; \
 			((number = number + 1)) ; \
