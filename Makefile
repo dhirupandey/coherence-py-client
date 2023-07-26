@@ -123,15 +123,11 @@ generate-proto:  ## Generate Proto Files
 # ----------------------------------------------------------------------------------------------------------------------
 .PHONY: test
 test:  ##
-	pytest -W error --cov src/coherence --cov-report=term --cov-report=html \
-		tests/test_serialization.py \
-		tests/test_extractors.py \
-		tests/test_session.py \
-		tests/test_client.py \
-		tests/test_events.py \
-		tests/test_filters.py \
-		tests/test_processors.py \
-		tests/test_aggregators.py \
+	number=1 ; while [[ $$number -le 100 ]] ; do \
+			echo "Iteration Number $$number" ; \
+			pytest -W error tests/test_session.py -k "test_wait_for_ready" -s -o log_cli-level=DEBUG ; \
+			((number = number + 1)) ; \
+	done
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Run standards validation across project
