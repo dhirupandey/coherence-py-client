@@ -125,6 +125,8 @@ generate-proto:  ## Generate Proto Files
 test:  ##
 	number=1 ; while [ `expr $$number` -le 10 ] ; do \
 			echo "Iteration Number $$number" ; \
+			export GRPC_VERBOSITY=debug ; \
+			export GRPC_TRACE=tcp,http,channel,round_robin,client_channel,client_channel_lb_call ; \
 			pytest -W error tests/test_session.py -k "test_wait_for_ready" -s -o log_cli-level=DEBUG ; \
 			number=`expr $$number + 1` ; \
 	done
