@@ -123,7 +123,7 @@ generate-proto:  ## Generate Proto Files
 # ----------------------------------------------------------------------------------------------------------------------
 .PHONY: test
 test:  ##
-	number=1 ; while [ `expr $$number` -le 10 ] ; do \
+	number=1 ; while [ `expr $$number` -le 100 ] ; do \
 			echo "Iteration Number $$number" ; \
 			export GRPC_VERBOSITY=debug ; \
 			export GRPC_TRACE=tcp,http,channel,round_robin,client_channel,client_channel_lb_call ; \
