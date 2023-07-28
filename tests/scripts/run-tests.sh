@@ -20,7 +20,8 @@ COHERENCE_CLIENT_REQUEST_TIMEOUT=180.0 \
   COHERENCE_IO_JSON_DEBUG=false \
   make clean test-cluster-shutdown remove-app-images build-test-images test-cluster-startup just-wait test
   make dump-logs test-cluster-shutdown
-  mv ./tests/utils/run-logs.txt ./logs/run-logs-clear.txt
+  mv ./tests/utils/run-logs.txt ./logs/server-run-logs-clear.txt
+  mv ./client-log.txt ./logs/client-log-clear.txt
 
 echo "Coherence CE 22.06.5 with SSL"
 RUN_SECURE=true COHERENCE_IGNORE_INVALID_CERTS=true \
@@ -32,4 +33,5 @@ RUN_SECURE=true COHERENCE_IGNORE_INVALID_CERTS=true \
   PROFILES=,secure make clean certs test-cluster-shutdown remove-app-images \
                                                   build-test-images test-cluster-startup just-wait test
   make dump-logs test-cluster-shutdown
-  mv ./tests/utils/run-logs.txt ./logs/run-logs-ssl.txt
+  mv ./tests/utils/run-logs.txt ./logs/server-run-logs-ssl.txt
+  mv ./client-log.txt ./logs/client-log-ssl.txt
